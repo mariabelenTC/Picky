@@ -1,0 +1,32 @@
+program puntero;
+
+/*
+una variable de tipo puntero almacena la direccion de memoria de otra variable(la que apunta)
+
+nodos: donde guardas la informacion. es de tipo  registro.
+
+
+tirra: nil: una conts conocida en el lenguaje que considera que el puntero esta apuntando a ningun sitio, ademas identifica o marca el final de la lista.
+
+una lista esta formada por :
+	
+	su puntero y su cabecera.(lo principal)
+	nodos
+	nill: marca el final de la lista.
+
+
+representacion de una lista con numeros enteros 
+*/
+types:
+
+	TipoLista = ^TipoNodo;
+
+	/* (^: puntero)*/
+
+	TipoNodo= Record
+	{
+		info: int;
+		siguientepuntero: TipoLista;
+
+	};
+	

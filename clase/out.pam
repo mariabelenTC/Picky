@@ -1,0 +1,461 @@
+#!/bin/pam
+entry 4
+types 14
+0 bool b  0 1 2 4 0
+1 char c  0 255 256 4 0
+2 int i  -2147483646 2147483647 0 4 0
+3 float r  0 0 0 4 0
+4 $nil p  0 0 0 8 0
+5 file f  0 0 0 4 0
+6 strength h  0 255 0 4 0
+7 opacity l  0 1 0 4 0
+8 color e  0 6 7 4 0
+Black
+Red
+Green
+Blue
+Yellow
+Orange
+White
+9 button u  0 255 0 4 0
+10 sound e  0 19 20 4 0
+Woosh
+Beep
+Sheep
+Phaser
+Rocket
+CNote
+CsharpNote
+DNote
+DsharpNote
+ENote
+FNote
+FsharpNote
+GNote
+GsharpNote
+ANote
+AsharpNote
+BNote
+Bomb
+Fail
+Tada
+11 TipoTablero R  0 0 2 8 0
+anchotablero 2 0x0
+anchocasilla 2 0x4
+12 TipoCasilla R  0 0 2 8 0
+negro 1 0x0
+blanco 1 0x4
+13 $tstr1 s  0 0 1 4 1
+vars 31
+Maxint 2 0x0 2147483647 'tab' 1
+Minint 2 0x4 -2147483646 'tab' 1
+Maxchar 1 0x8 255 'tab' 1
+Minchar 1 0xc 0 'tab' 1
+Minstrength 6 0x10 0 'tab' 1
+Maxstrength 6 0x14 255 'tab' 1
+Transp 7 0x18 0.000000e+00 'tab' 1
+Tlucid 7 0x1c 5.000000e-01 'tab' 1
+Opaque 7 0x20 1.000000e+00 'tab' 1
+NoBut 9 0x24 0 'tab' 1
+Nul 1 0x28 0 'tab' 1
+Return 1 0x2c 246 'tab' 1
+MetaRight 1 0x30 248 'tab' 1
+MetaLeft 1 0x34 247 'tab' 1
+Eof 1 0x38 255 'tab' 1
+Tab 1 0x3c 9 'tab' 1
+Right 1 0x40 242 'tab' 1
+Ctrl 1 0x44 240 'tab' 1
+Eol 1 0x48 10 'tab' 1
+Esc 1 0x4c 27 'tab' 1
+Down 1 0x50 244 'tab' 1
+Left 1 0x54 243 'tab' 1
+Shift 1 0x58 241 'tab' 1
+Del 1 0x5c 249 'tab' 1
+Up 1 0x60 245 'tab' 1
+Letramin 1 0x64 65 'tab' 34
+Nummin 2 0x68 1 'tab' 4
+$s0 13 0x6c ' ' 'tab' 40
+stdin 5 0x70 - 'tab' 1
+stdout 5 0x74 - 'tab' 1
+stdgraph 5 0x78 - 'tab' 1
+procs 5
+0 leerdimensionestablero 0x00000 2 0 0 16 0 'tab' 96
+dimensiones 11 0x8 - 'tab' 21
+casilla 12 0x0 - 'tab' 23
+1 escribirletras 0x00036 1 4 0 8 16 'tab' 97
+dimensiones 11 0x0 - 'tab' 37
+numero 2 0x0 - 'tab' 35
+anchotablero 2 0x4 - 'tab' 37
+letra 1 0x8 - 'tab' 43
+espacio 2 0xc - 'tab' 31
+2 escasillapar 0x000b4 1 0 4 4 0 'tab' 65
+fila 2 0x0 - 'tab' 49
+3 ponernegrasyblancas 0x000c0 2 5 0 16 20 'tab' 98
+dimensiones 11 0x8 - 'tab' 76
+casilla 12 0x0 - 'tab' 83
+dim1 2 0x0 - 'tab' 65
+dim2 2 0x4 - 'tab' 73
+k 2 0x8 - 'tab' 76
+j 2 0xc - 'tab' 71
+colr 1 0x10 - 'tab' 83
+4 main 0x001b5 0 2 0 0 16 'tab' 92
+dimensiones 11 0x0 - 'tab' 98
+casillas 12 0x8 - 'tab' 98
+text 461
+# leerdimensionestablero()
+# {...}
+# freadln(stdin: file, .(&dimensiones: TipoTablero, anchotablero: int))
+00000	arg	0x0000000008	# .; &dimensiones: TipoTablero;
+00002	ind	0x0000000008
+00004	daddr	0x0000000070	# stdin: file;
+00006	ind	0x0000000004
+00008	push	0x0000000002
+0000a	call	0x008000000d	# freadln();
+# freadln(stdin: file, .(&dimensiones: TipoTablero, anchocasilla: int))
+0000c	arg	0x0000000008	# .; &dimensiones: TipoTablero;
+0000e	ind	0x0000000008
+00010	fld	0x0000000004
+00012	daddr	0x0000000070	# stdin: file;
+00014	ind	0x0000000004
+00016	push	0x0000000002
+00018	call	0x008000000d	# freadln();
+# freadln(stdin: file, .(&casilla: TipoCasilla, blanco: char))
+0001a	arg	0x0000000000	# .; &casilla: TipoCasilla;
+0001c	ind	0x0000000008
+0001e	fld	0x0000000004
+00020	daddr	0x0000000070	# stdin: file;
+00022	ind	0x0000000004
+00024	push	0x0000000001
+00026	call	0x008000000d	# freadln();
+# freadln(stdin: file, .(&casilla: TipoCasilla, negro: char))
+00028	arg	0x0000000000	# .; &casilla: TipoCasilla;
+0002a	ind	0x0000000008
+0002c	daddr	0x0000000070	# stdin: file;
+0002e	ind	0x0000000004
+00030	push	0x0000000001
+00032	call	0x008000000d	# freadln();
+# return <nil>
+00034	ret	0x0000000000
+# escribirletras()
+# {...}
+# %letra: char = Letramin='A'
+00036	push	0x0000000041	# Letramin='A';
+00038	lvar	0x0000000008	# %letra: char;
+0003a	sto	0x0000000001
+# {...}
+# %numero: int = 0
+0003c	push	0x0000000000	# 0;
+0003e	lvar	0x0000000000	# %numero: int;
+00040	sto	0x0000000002
+# for(<(%numero: int, .($dimensiones: TipoTablero, anchotablero: int)))
+00042	arg	0x0000000000	# .; $dimensiones: TipoTablero;
+00044	ind	0x0000000004
+00046	lvar	0x0000000000	# %numero: int;
+00048	ind	0x0000000004
+0004a	lt	
+0004b	jmpf	0x00000000ac
+# {...}
+# {...}
+# %anchotablero: int = 0
+0004d	push	0x0000000000	# 0;
+0004f	lvar	0x0000000004	# %anchotablero: int;
+00051	sto	0x0000000002
+# for(<(%anchotablero: int, .($dimensiones: TipoTablero, anchocasilla: int)))
+00053	arg	0x0000000000	# .; $dimensiones: TipoTablero;
+00055	fld	0x0000000004
+00057	ind	0x0000000004
+00059	lvar	0x0000000004	# %anchotablero: int;
+0005b	ind	0x0000000004
+0005d	lt	
+0005e	jmpf	0x0000000096
+# {...}
+# if(==(%anchotablero: int, /(.($dimensiones: TipoTablero, anchocasilla: int), 2)))
+00060	push	0x0000000002	# 2;
+00062	arg	0x0000000000	# .; $dimensiones: TipoTablero;
+00064	fld	0x0000000004
+00066	ind	0x0000000004
+00068	div	
+00069	lvar	0x0000000004	# %anchotablero: int;
+0006b	ind	0x0000000004
+0006d	eq	
+0006e	jmpf	0x000000007e
+# {...}
+# fwrite(stdout: file, %letra: char)
+00070	lvar	0x0000000008	# %letra: char;
+00072	ind	0x0000000004
+00074	daddr	0x0000000074	# stdout: file;
+00076	ind	0x0000000004
+00078	push	0x0000000001
+0007a	call	0x008000000f	# fwrite();
+0007c	jmp	0x000000008a
+# else
+# fwrite(stdout: file, $s0=" ")
+0007e	daddr	0x000000006c	# $s0=" ";
+00080	ind	0x0000000004
+00082	daddr	0x0000000074	# stdout: file;
+00084	ind	0x0000000004
+00086	push	0x000000000d
+00088	call	0x008000000f	# fwrite();
+# %anchotablero: int = succ(%anchotablero: int)
+0008a	lvar	0x0000000004	# %anchotablero: int;
+0008c	ind	0x0000000004
+0008e	call	0x0080000031	# succ();
+00090	lvar	0x0000000004	# %anchotablero: int;
+00092	sto	0x0000000002
+00094	jmp	0x0000000053
+# %letra: char = succ(%letra: char)
+00096	lvar	0x0000000008	# %letra: char;
+00098	ind	0x0000000004
+0009a	call	0x0080000031	# succ();
+0009c	lvar	0x0000000008	# %letra: char;
+0009e	sto	0x0000000001
+# %numero: int = succ(%numero: int)
+000a0	lvar	0x0000000000	# %numero: int;
+000a2	ind	0x0000000004
+000a4	call	0x0080000031	# succ();
+000a6	lvar	0x0000000000	# %numero: int;
+000a8	sto	0x0000000002
+000aa	jmp	0x0000000042
+# fwriteeol(stdout: file)
+000ac	daddr	0x0000000074	# stdout: file;
+000ae	ind	0x0000000004
+000b0	call	0x0080000011	# fwriteeol();
+# return <nil>
+000b2	ret	0x0000000001
+# escasillapar()
+# {...}
+# return ==(%($fila: int, 2), 0)
+000b4	push	0x0000000000	# 0;
+000b6	push	0x0000000002	# 2;
+000b8	arg	0x0000000000	# $fila: int;
+000ba	ind	0x0000000004
+000bc	mod	
+000bd	eq	
+000be	ret	0x0000000002
+# ponernegrasyblancas()
+# {...}
+# {...}
+# %dim1: int = 1
+000c0	push	0x0000000001	# 1;
+000c2	lvar	0x0000000000	# %dim1: int;
+000c4	sto	0x0000000002
+# for(<=(%dim1: int, .($dimensiones: TipoTablero, anchotablero: int)))
+000c6	arg	0x0000000008	# .; $dimensiones: TipoTablero;
+000c8	ind	0x0000000004
+000ca	lvar	0x0000000000	# %dim1: int;
+000cc	ind	0x0000000004
+000ce	le	
+000cf	jmpf	0x00000001ad
+# {...}
+# if(escasillapar(%dim1: int))
+000d1	lvar	0x0000000000	# %dim1: int;
+000d3	ind	0x0000000004
+000d5	call	0x0000000002	# escasillapar();
+000d7	jmpf	0x00000000e3
+# {...}
+# %colr: char = .($casilla: TipoCasilla, blanco: char)
+000d9	arg	0x0000000000	# .; $casilla: TipoCasilla;
+000db	fld	0x0000000004
+000dd	lvar	0x0000000010	# %colr: char;
+000df	stom	0x0000000001
+000e1	jmp	0x00000000e9
+# else
+# %colr: char = .($casilla: TipoCasilla, negro: char)
+000e3	arg	0x0000000000	# .; $casilla: TipoCasilla;
+000e5	lvar	0x0000000010	# %colr: char;
+000e7	stom	0x0000000001
+# {...}
+# %j: int = 1
+000e9	push	0x0000000001	# 1;
+000eb	lvar	0x000000000c	# %j: int;
+000ed	sto	0x0000000002
+# for(<=(%j: int, .($dimensiones: TipoTablero, anchocasilla: int)))
+000ef	arg	0x0000000008	# .; $dimensiones: TipoTablero;
+000f1	fld	0x0000000004
+000f3	ind	0x0000000004
+000f5	lvar	0x000000000c	# %j: int;
+000f7	ind	0x0000000004
+000f9	le	
+000fa	jmpf	0x0000000196
+# {...}
+# {...}
+# %dim2: int = 1
+000fc	push	0x0000000001	# 1;
+000fe	lvar	0x0000000004	# %dim2: int;
+00100	sto	0x0000000002
+# for(<=(%dim2: int, .($dimensiones: TipoTablero, anchotablero: int)))
+00102	arg	0x0000000008	# .; $dimensiones: TipoTablero;
+00104	ind	0x0000000004
+00106	lvar	0x0000000004	# %dim2: int;
+00108	ind	0x0000000004
+0010a	le	
+0010b	jmpf	0x0000000177
+# {...}
+# {...}
+# %k: int = 1
+0010d	push	0x0000000001	# 1;
+0010f	lvar	0x0000000008	# %k: int;
+00111	sto	0x0000000002
+# for(<=(%k: int, .($dimensiones: TipoTablero, anchocasilla: int)))
+00113	arg	0x0000000008	# .; $dimensiones: TipoTablero;
+00115	fld	0x0000000004
+00117	ind	0x0000000004
+00119	lvar	0x0000000008	# %k: int;
+0011b	ind	0x0000000004
+0011d	le	
+0011e	jmpf	0x0000000145
+# {...}
+# fwrite(stdout: file, %colr: char)
+00120	lvar	0x0000000010	# %colr: char;
+00122	ind	0x0000000004
+00124	daddr	0x0000000074	# stdout: file;
+00126	ind	0x0000000004
+00128	push	0x0000000001
+0012a	call	0x008000000f	# fwrite();
+0012c	arg	0x0000000008	# .; $dimensiones: TipoTablero;
+0012e	fld	0x0000000004
+00130	ind	0x0000000004
+00132	lvar	0x0000000008	# %k: int;
+00134	ind	0x0000000004
+00136	eq	
+00137	jmpt	0x0000000145
+# %k: int = succ(%k: int)
+00139	lvar	0x0000000008	# %k: int;
+0013b	ind	0x0000000004
+0013d	call	0x0080000031	# succ();
+0013f	lvar	0x0000000008	# %k: int;
+00141	sto	0x0000000002
+00143	jmp	0x0000000113
+# if(==(%colr: char, .($casilla: TipoCasilla, negro: char)))
+00145	arg	0x0000000000	# .; $casilla: TipoCasilla;
+00147	ind	0x0000000004
+00149	lvar	0x0000000010	# %colr: char;
+0014b	ind	0x0000000004
+0014d	eq	
+0014e	jmpf	0x000000015a
+# {...}
+# %colr: char = .($casilla: TipoCasilla, blanco: char)
+00150	arg	0x0000000000	# .; $casilla: TipoCasilla;
+00152	fld	0x0000000004
+00154	lvar	0x0000000010	# %colr: char;
+00156	stom	0x0000000001
+00158	jmp	0x0000000160
+# else
+# %colr: char = .($casilla: TipoCasilla, negro: char)
+0015a	arg	0x0000000000	# .; $casilla: TipoCasilla;
+0015c	lvar	0x0000000010	# %colr: char;
+0015e	stom	0x0000000001
+00160	arg	0x0000000008	# .; $dimensiones: TipoTablero;
+00162	ind	0x0000000004
+00164	lvar	0x0000000004	# %dim2: int;
+00166	ind	0x0000000004
+00168	eq	
+00169	jmpt	0x0000000177
+# %dim2: int = succ(%dim2: int)
+0016b	lvar	0x0000000004	# %dim2: int;
+0016d	ind	0x0000000004
+0016f	call	0x0080000031	# succ();
+00171	lvar	0x0000000004	# %dim2: int;
+00173	sto	0x0000000002
+00175	jmp	0x0000000102
+# fwriteeol(stdout: file)
+00177	daddr	0x0000000074	# stdout: file;
+00179	ind	0x0000000004
+0017b	call	0x0080000011	# fwriteeol();
+0017d	arg	0x0000000008	# .; $dimensiones: TipoTablero;
+0017f	fld	0x0000000004
+00181	ind	0x0000000004
+00183	lvar	0x000000000c	# %j: int;
+00185	ind	0x0000000004
+00187	eq	
+00188	jmpt	0x0000000196
+# %j: int = succ(%j: int)
+0018a	lvar	0x000000000c	# %j: int;
+0018c	ind	0x0000000004
+0018e	call	0x0080000031	# succ();
+00190	lvar	0x000000000c	# %j: int;
+00192	sto	0x0000000002
+00194	jmp	0x00000000ef
+00196	arg	0x0000000008	# .; $dimensiones: TipoTablero;
+00198	ind	0x0000000004
+0019a	lvar	0x0000000000	# %dim1: int;
+0019c	ind	0x0000000004
+0019e	eq	
+0019f	jmpt	0x00000001ad
+# %dim1: int = succ(%dim1: int)
+001a1	lvar	0x0000000000	# %dim1: int;
+001a3	ind	0x0000000004
+001a5	call	0x0080000031	# succ();
+001a7	lvar	0x0000000000	# %dim1: int;
+001a9	sto	0x0000000002
+001ab	jmp	0x00000000c6
+# fwriteeol(stdout: file)
+001ad	daddr	0x0000000074	# stdout: file;
+001af	ind	0x0000000004
+001b1	call	0x0080000011	# fwriteeol();
+# return <nil>
+001b3	ret	0x0000000003
+# main()
+# {...}
+# leerdimensionestablero(%dimensiones: TipoTablero, %casillas: TipoCasilla)
+001b5	lvar	0x0000000008	# %casillas: TipoCasilla;
+001b7	lvar	0x0000000000	# %dimensiones: TipoTablero;
+001b9	call	0x0000000000	# leerdimensionestablero();
+# escribirletras(%dimensiones: TipoTablero)
+001bb	lvar	0x0000000000	# %dimensiones: TipoTablero;
+001bd	ind	0x0000000008
+001bf	call	0x0000000001	# escribirletras();
+# ponernegrasyblancas(%dimensiones: TipoTablero, %casillas: TipoCasilla)
+001c1	lvar	0x0000000008	# %casillas: TipoCasilla;
+001c3	ind	0x0000000008
+001c5	lvar	0x0000000000	# %dimensiones: TipoTablero;
+001c7	ind	0x0000000008
+001c9	call	0x0000000003	# ponernegrasyblancas();
+# return <nil>
+001cb	ret	0x0000000004
+pcs 45
+00000	'tab'	20
+0000c	'tab'	21
+0001a	'tab'	22
+00028	'tab'	23
+00034	'tab'	103
+00036	'tab'	34
+0003c	'tab'	35
+0003c	'tab'	44
+0004d	'tab'	37
+0004d	'tab'	42
+00060	'tab'	37
+00070	'tab'	38
+0007e	'tab'	40
+0008a	'tab'	42
+00096	'tab'	43
+000a0	'tab'	44
+000ac	'tab'	45
+000b2	'tab'	103
+000b4	'tab'	49
+000c0	'tab'	65
+000c0	'tab'	88
+000d1	'tab'	65
+000d9	'tab'	66
+000e3	'tab'	68
+000e9	'tab'	71
+000e9	'tab'	87
+000fc	'tab'	73
+000fc	'tab'	85
+0010d	'tab'	76
+0010d	'tab'	78
+00120	'tab'	77
+00139	'tab'	78
+00145	'tab'	80
+00150	'tab'	81
+0015a	'tab'	83
+0016b	'tab'	85
+00177	'tab'	86
+0018a	'tab'	87
+001a1	'tab'	88
+001ad	'tab'	89
+001b3	'tab'	103
+001b5	'tab'	96
+001bb	'tab'	97
+001c1	'tab'	98
+001cb	'tab'	103

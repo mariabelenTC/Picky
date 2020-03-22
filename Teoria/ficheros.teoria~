@@ -1,0 +1,43 @@
+program fichero;
+
+
+/*ficheros:
+*
+*       siempre antes de trabajar con los ficheros, hay que abrirlos:   "r","w"
+*       
+*
+*               1           2         3
+*       open(fichero, "fichero.txt", "r")
+*       1.open: abrir un fichero, en el modo
+*       2.el nombre fisico
+*       3.el nombre logico.
+*
+*      
+*/
+procedure main()
+        fichero: file;
+        c:char;
+        eofencontrado: bool; /*la forma de leerlo es poner en el main*/
+{
+        open(fichero, "fichero.txt", "r");
+        
+        lofencontrado=False;
+        while(not eofencontrado){
+                fpeek(fichero,c);
+                switch(c){
+                        case Eof:
+                                eofencontrado=True;
+                        case Eol:
+                                freadeol(fichero);
+                                writeeol();
+                        defaul:
+                        /*la variable donde almaceno mi caracter*/
+                                fread(fichero,c);
+                                write(c);
+                }
+        
+        
+        close(fichero EL NOMBRE LOGICO DEL FICHERO);
+}
+/* el fin de fichero no se puede leer*/
+        

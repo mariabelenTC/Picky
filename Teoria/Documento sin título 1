@@ -1,0 +1,32 @@
+/*
+*       El Arrays Bidimensionales
+*/
+
+consts.
+        max = 10;
+types:
+        TipoRangoVector= int 0.. Max -1;
+        TipoVector = array[TipoRangoVectorial] of char;
+
+function estaentero(n: int, vector: TipoVector): bool
+        minin: int;
+        maxin: int;
+        mitad: int;
+        encontrado: bool;      
+{
+        minin=0;
+        maxin= Max-1;
+        while((not encontrado) and (minin<=maxin)){
+                mitad= (minin+maxin);
+                if (n==vector[mitad]){
+                        encontrado=True;
+                }else {                
+                        if (n>vector[mitad]){
+                                maxin=mitad-1;
+                        {else {
+                                minin=mitad+1;
+                        }
+                }
+       }
+       return encontrado;
+}

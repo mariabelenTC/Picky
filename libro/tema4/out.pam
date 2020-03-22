@@ -1,0 +1,341 @@
+#!/bin/pam
+entry 4
+types 18
+0 bool b  0 1 2 4 0
+1 char c  0 255 256 4 0
+2 int i  -2147483646 2147483647 0 4 0
+3 float r  0 0 0 4 0
+4 $nil p  0 0 0 8 0
+5 file f  0 0 0 4 0
+6 strength h  0 255 0 4 0
+7 opacity l  0 1 0 4 0
+8 color e  0 6 7 4 0
+Black
+Red
+Green
+Blue
+Yellow
+Orange
+White
+9 button u  0 255 0 4 0
+10 sound e  0 19 20 4 0
+Woosh
+Beep
+Sheep
+Phaser
+Rocket
+CNote
+CsharpNote
+DNote
+DsharpNote
+ENote
+FNote
+FsharpNote
+GNote
+GsharpNote
+ANote
+AsharpNote
+BNote
+Bomb
+Fail
+Tada
+11 TipoEcuacion R  0 0 3 12 0
+a 3 0x0
+b 3 0x4
+c 3 0x8
+12 $tstr28 s  0 27 28 112 1
+13 $tstr10 s  0 9 10 40 1
+14 $tstr4 s  0 3 4 16 1
+15 $tstr5 s  0 4 5 20 1
+16 $tstr6 s  0 5 6 24 1
+17 $tstr24 s  0 23 24 96 1
+vars 34
+Maxint 2 0x0 2147483647 'ec2grado.p' 1
+Minint 2 0x4 -2147483646 'ec2grado.p' 1
+Maxchar 1 0x8 255 'ec2grado.p' 1
+Minchar 1 0xc 0 'ec2grado.p' 1
+Minstrength 6 0x10 0 'ec2grado.p' 1
+Maxstrength 6 0x14 255 'ec2grado.p' 1
+Transp 7 0x18 0.000000e+00 'ec2grado.p' 1
+Tlucid 7 0x1c 5.000000e-01 'ec2grado.p' 1
+Opaque 7 0x20 1.000000e+00 'ec2grado.p' 1
+NoBut 9 0x24 0 'ec2grado.p' 1
+Eol 1 0x28 10 'ec2grado.p' 1
+Nul 1 0x2c 0 'ec2grado.p' 1
+Shift 1 0x30 241 'ec2grado.p' 1
+Ctrl 1 0x34 240 'ec2grado.p' 1
+Return 1 0x38 246 'ec2grado.p' 1
+Del 1 0x3c 249 'ec2grado.p' 1
+Right 1 0x40 242 'ec2grado.p' 1
+MetaRight 1 0x44 248 'ec2grado.p' 1
+Eof 1 0x48 255 'ec2grado.p' 1
+Up 1 0x4c 245 'ec2grado.p' 1
+Down 1 0x50 244 'ec2grado.p' 1
+Left 1 0x54 243 'ec2grado.p' 1
+Tab 1 0x58 9 'ec2grado.p' 1
+Esc 1 0x5c 27 'ec2grado.p' 1
+MetaLeft 1 0x60 247 'ec2grado.p' 1
+$s0 12 0x64 'Escribir los coeficioentes: ' 'ec2grado.p' 13
+$s1 13 0xd4 'Solucion: ' 'ec2grado.p' 30
+$s2 14 0xfc 'x = ' 'ec2grado.p' 32
+$s3 15 0x10c 'x1 = ' 'ec2grado.p' 35
+$s4 16 0x120 ' x2 = ' 'ec2grado.p' 37
+$s5 17 0x138 'no existe solucion real ' 'ec2grado.p' 53
+stdin 5 0x198 - 'ec2grado.p' 1
+stdout 5 0x19c - 'ec2grado.p' 1
+stdgraph 5 0x1a0 - 'ec2grado.p' 1
+procs 5
+0 leerecuacion 0x00000 1 0 0 8 0 'ec2grado.p' 47
+coef 11 0x0 - 'ec2grado.p' 16
+1 existensoluciones 0x00036 1 0 4 12 0 'ec2grado.p' 49
+coef 11 0x0 - 'ec2grado.p' 20
+2 operacion 0x00058 3 0 0 28 0 'ec2grado.p' 50
+coef 11 0x10 - 'ec2grado.p' 26
+soluc1 3 0x8 - 'ec2grado.p' 25
+soluc2 3 0x0 - 'ec2grado.p' 26
+3 imprimirsol 0x000ac 2 0 0 8 0 'ec2grado.p' 51
+soluc1 3 0x4 - 'ec2grado.p' 36
+soluc2 3 0x0 - 'ec2grado.p' 38
+4 main 0x00115 0 3 0 0 20 'ec2grado.p' 42
+coef 11 0x0 - 'ec2grado.p' 50
+soluc1 3 0xc - 'ec2grado.p' 51
+soluc2 3 0x10 - 'ec2grado.p' 51
+text 325
+# leerecuacion()
+# {...}
+# fwriteln(stdout: file, $s0="Escribir los coeficioentes: ")
+00000	daddr	0x0000000064	# $s0="Escribir los coeficioentes: ";
+00002	ind	0x0000000070
+00004	daddr	0x000000019c	# stdout: file;
+00006	ind	0x0000000004
+00008	push	0x000000000c
+0000a	call	0x0080000010	# fwriteln();
+# fread(stdin: file, .(&coef: TipoEcuacion, a: float))
+0000c	arg	0x0000000000	# .; &coef: TipoEcuacion;
+0000e	ind	0x0000000008
+00010	daddr	0x0000000198	# stdin: file;
+00012	ind	0x0000000004
+00014	push	0x0000000003
+00016	call	0x008000000b	# fread();
+# fread(stdin: file, .(&coef: TipoEcuacion, b: float))
+00018	arg	0x0000000000	# .; &coef: TipoEcuacion;
+0001a	ind	0x0000000008
+0001c	fld	0x0000000004
+0001e	daddr	0x0000000198	# stdin: file;
+00020	ind	0x0000000004
+00022	push	0x0000000003
+00024	call	0x008000000b	# fread();
+# fread(stdin: file, .(&coef: TipoEcuacion, c: float))
+00026	arg	0x0000000000	# .; &coef: TipoEcuacion;
+00028	ind	0x0000000008
+0002a	fld	0x0000000008
+0002c	daddr	0x0000000198	# stdin: file;
+0002e	ind	0x0000000004
+00030	push	0x0000000003
+00032	call	0x008000000b	# fread();
+# return <nil>
+00034	ret	0x0000000000
+# existensoluciones()
+# {...}
+# return and(!=(.($coef: TipoEcuacion, a: float), 0.000000), >=(**(.($coef: TipoEcuacion, b: float), 2.000000), *(*(4.000000, .($coef: TipoEcuacion, a: float)), .($coef: TipoEcuacion, c: float))))
+00036	arg	0x0000000000	# .; $coef: TipoEcuacion;
+00038	fld	0x0000000008
+0003a	ind	0x0000000004
+0003c	arg	0x0000000000	# .; $coef: TipoEcuacion;
+0003e	ind	0x0000000004
+00040	pushr	4.000000e+00	# 4.000000;
+00042	mulr	
+00043	mulr	
+00044	pushr	2.000000e+00	# 2.000000;
+00046	arg	0x0000000000	# .; $coef: TipoEcuacion;
+00048	fld	0x0000000004
+0004a	ind	0x0000000004
+0004c	powr	
+0004d	ger	
+0004e	pushr	0.000000e+00	# 0.000000;
+00050	arg	0x0000000000	# .; $coef: TipoEcuacion;
+00052	ind	0x0000000004
+00054	ner	
+00055	and	
+00056	ret	0x0000000001
+# operacion()
+# {...}
+# &soluc1: float = *(/(+(-(.($coef: TipoEcuacion, b: float)), sqrt(-(**(.($coef: TipoEcuacion, b: float), 2.000000), *(4.000000, .($coef: TipoEcuacion, a: float))))), 2.000000), .($coef: TipoEcuacion, a: float))
+00058	arg	0x0000000010	# .; $coef: TipoEcuacion;
+0005a	ind	0x0000000004
+0005c	pushr	2.000000e+00	# 2.000000;
+0005e	arg	0x0000000010	# .; $coef: TipoEcuacion;
+00060	ind	0x0000000004
+00062	pushr	4.000000e+00	# 4.000000;
+00064	mulr	
+00065	pushr	2.000000e+00	# 2.000000;
+00067	arg	0x0000000010	# .; $coef: TipoEcuacion;
+00069	fld	0x0000000004
+0006b	ind	0x0000000004
+0006d	powr	
+0006e	subr	
+0006f	call	0x0080000019	# sqrt();
+00071	arg	0x0000000010	# .; $coef: TipoEcuacion;
+00073	fld	0x0000000004
+00075	ind	0x0000000004
+00077	minusr	
+00078	addr	
+00079	divr	
+0007a	mulr	
+0007b	arg	0x0000000008	# &soluc1: float;
+0007d	ind	0x0000000008
+0007f	sto	0x0000000003
+# &soluc2: float = *(/(-(-(.($coef: TipoEcuacion, b: float)), sqrt(-(**(.($coef: TipoEcuacion, b: float), 2.000000), *(4.000000, .($coef: TipoEcuacion, a: float))))), 2.000000), .($coef: TipoEcuacion, a: float))
+00081	arg	0x0000000010	# .; $coef: TipoEcuacion;
+00083	ind	0x0000000004
+00085	pushr	2.000000e+00	# 2.000000;
+00087	arg	0x0000000010	# .; $coef: TipoEcuacion;
+00089	ind	0x0000000004
+0008b	pushr	4.000000e+00	# 4.000000;
+0008d	mulr	
+0008e	pushr	2.000000e+00	# 2.000000;
+00090	arg	0x0000000010	# .; $coef: TipoEcuacion;
+00092	fld	0x0000000004
+00094	ind	0x0000000004
+00096	powr	
+00097	subr	
+00098	call	0x0080000019	# sqrt();
+0009a	arg	0x0000000010	# .; $coef: TipoEcuacion;
+0009c	fld	0x0000000004
+0009e	ind	0x0000000004
+000a0	minusr	
+000a1	subr	
+000a2	divr	
+000a3	mulr	
+000a4	arg	0x0000000000	# &soluc2: float;
+000a6	ind	0x0000000008
+000a8	sto	0x0000000003
+# return <nil>
+000aa	ret	0x0000000002
+# imprimirsol()
+# {...}
+# fwrite(stdout: file, $s1="Solucion: ")
+000ac	daddr	0x00000000d4	# $s1="Solucion: ";
+000ae	ind	0x0000000028
+000b0	daddr	0x000000019c	# stdout: file;
+000b2	ind	0x0000000004
+000b4	push	0x000000000d
+000b6	call	0x008000000f	# fwrite();
+# if(==($soluc1: float, $soluc2: float))
+000b8	arg	0x0000000000	# $soluc2: float;
+000ba	ind	0x0000000004
+000bc	arg	0x0000000004	# $soluc1: float;
+000be	ind	0x0000000004
+000c0	eqr	
+000c1	jmpf	0x00000000dd
+# {...}
+# fwrite(stdout: file, $s2="x = ")
+000c3	daddr	0x00000000fc	# $s2="x = ";
+000c5	ind	0x0000000010
+000c7	daddr	0x000000019c	# stdout: file;
+000c9	ind	0x0000000004
+000cb	push	0x000000000e
+000cd	call	0x008000000f	# fwrite();
+# fwrite(stdout: file, $soluc1: float)
+000cf	arg	0x0000000004	# $soluc1: float;
+000d1	ind	0x0000000004
+000d3	daddr	0x000000019c	# stdout: file;
+000d5	ind	0x0000000004
+000d7	push	0x0000000003
+000d9	call	0x008000000f	# fwrite();
+000db	jmp	0x000000010d
+# else
+# fwrite(stdout: file, $s3="x1 = ")
+000dd	daddr	0x000000010c	# $s3="x1 = ";
+000df	ind	0x0000000014
+000e1	daddr	0x000000019c	# stdout: file;
+000e3	ind	0x0000000004
+000e5	push	0x000000000f
+000e7	call	0x008000000f	# fwrite();
+# fwrite(stdout: file, $soluc1: float)
+000e9	arg	0x0000000004	# $soluc1: float;
+000eb	ind	0x0000000004
+000ed	daddr	0x000000019c	# stdout: file;
+000ef	ind	0x0000000004
+000f1	push	0x0000000003
+000f3	call	0x008000000f	# fwrite();
+# fwrite(stdout: file, $s4=" x2 = ")
+000f5	daddr	0x0000000120	# $s4=" x2 = ";
+000f7	ind	0x0000000018
+000f9	daddr	0x000000019c	# stdout: file;
+000fb	ind	0x0000000004
+000fd	push	0x0000000010
+000ff	call	0x008000000f	# fwrite();
+# fwrite(stdout: file, $soluc2: float)
+00101	arg	0x0000000000	# $soluc2: float;
+00103	ind	0x0000000004
+00105	daddr	0x000000019c	# stdout: file;
+00107	ind	0x0000000004
+00109	push	0x0000000003
+0010b	call	0x008000000f	# fwrite();
+# fwriteeol(stdout: file)
+0010d	daddr	0x000000019c	# stdout: file;
+0010f	ind	0x0000000004
+00111	call	0x0080000011	# fwriteeol();
+# return <nil>
+00113	ret	0x0000000003
+# main()
+# {...}
+# leerecuacion(%coef: TipoEcuacion)
+00115	lvar	0x0000000000	# %coef: TipoEcuacion;
+00117	call	0x0000000000	# leerecuacion();
+# if(existensoluciones(%coef: TipoEcuacion))
+00119	lvar	0x0000000000	# %coef: TipoEcuacion;
+0011b	ind	0x000000000c
+0011d	call	0x0000000001	# existensoluciones();
+0011f	jmpf	0x0000000137
+# {...}
+# operacion(%coef: TipoEcuacion, %soluc1: float, %soluc2: float)
+00121	lvar	0x0000000010	# %soluc2: float;
+00123	lvar	0x000000000c	# %soluc1: float;
+00125	lvar	0x0000000000	# %coef: TipoEcuacion;
+00127	ind	0x000000000c
+00129	call	0x0000000002	# operacion();
+# imprimirsol(%soluc1: float, %soluc2: float)
+0012b	lvar	0x0000000010	# %soluc2: float;
+0012d	ind	0x0000000004
+0012f	lvar	0x000000000c	# %soluc1: float;
+00131	ind	0x0000000004
+00133	call	0x0000000003	# imprimirsol();
+00135	jmp	0x0000000143
+# else
+# fwrite(stdout: file, $s5="no existe solucion real ")
+00137	daddr	0x0000000138	# $s5="no existe solucion real ";
+00139	ind	0x0000000060
+0013b	daddr	0x000000019c	# stdout: file;
+0013d	ind	0x0000000004
+0013f	push	0x0000000011
+00141	call	0x008000000f	# fwrite();
+# return <nil>
+00143	ret	0x0000000004
+pcs 25
+00000	'ec2grado.p'	13
+0000c	'ec2grado.p'	14
+00018	'ec2grado.p'	15
+00026	'ec2grado.p'	16
+00034	'ec2grado.p'	58
+00036	'ec2grado.p'	20
+00058	'ec2grado.p'	25
+00081	'ec2grado.p'	26
+000aa	'ec2grado.p'	58
+000ac	'ec2grado.p'	30
+000b8	'ec2grado.p'	31
+000c3	'ec2grado.p'	32
+000cf	'ec2grado.p'	33
+000dd	'ec2grado.p'	35
+000e9	'ec2grado.p'	36
+000f5	'ec2grado.p'	37
+00101	'ec2grado.p'	38
+0010d	'ec2grado.p'	40
+00113	'ec2grado.p'	58
+00115	'ec2grado.p'	47
+00119	'ec2grado.p'	49
+00121	'ec2grado.p'	50
+0012b	'ec2grado.p'	51
+00137	'ec2grado.p'	53
+00143	'ec2grado.p'	58

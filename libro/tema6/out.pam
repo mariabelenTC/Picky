@@ -1,0 +1,265 @@
+#!/bin/pam
+entry 4
+types 17
+0 bool b  0 1 2 4 0
+1 char c  0 255 256 4 0
+2 int i  -2147483646 2147483647 0 4 0
+3 float r  0 0 0 4 0
+4 $nil p  0 0 0 8 0
+5 file f  0 0 0 4 0
+6 strength h  0 255 0 4 0
+7 opacity l  0 1 0 4 0
+8 color e  0 6 7 4 0
+Black
+Red
+Green
+Blue
+Yellow
+Orange
+White
+9 button u  0 255 0 4 0
+10 sound e  0 19 20 4 0
+Woosh
+Beep
+Sheep
+Phaser
+Rocket
+CNote
+CsharpNote
+DNote
+DsharpNote
+ENote
+FNote
+FsharpNote
+GNote
+GsharpNote
+ANote
+AsharpNote
+BNote
+Bomb
+Fail
+Tada
+11 TipoValor e  0 9 10 4 0
+As
+Dos
+Tres
+Cuatro
+Cinco
+Seis
+Siete
+Sota
+Caballo
+Rey
+12 TipoPalo e  0 3 4 4 0
+Bastos
+Oros
+Copas
+Espadas
+13 TipoCarta R  0 0 2 8 0
+valor 11 0x0
+palo 12 0x4
+14 $tstr7 s  0 6 7 28 1
+15 $tstr6 s  0 5 6 24 1
+16 $tstr16 s  0 15 16 64 1
+vars 31
+Maxint 2 0x0 2147483647 'cartas.p' 1
+Minint 2 0x4 -2147483646 'cartas.p' 1
+Maxchar 1 0x8 255 'cartas.p' 1
+Minchar 1 0xc 0 'cartas.p' 1
+Minstrength 6 0x10 0 'cartas.p' 1
+Maxstrength 6 0x14 255 'cartas.p' 1
+Transp 7 0x18 0.000000e+00 'cartas.p' 1
+Tlucid 7 0x1c 5.000000e-01 'cartas.p' 1
+Opaque 7 0x20 1.000000e+00 'cartas.p' 1
+NoBut 9 0x24 0 'cartas.p' 1
+Eof 1 0x28 255 'cartas.p' 1
+Esc 1 0x2c 27 'cartas.p' 1
+Eol 1 0x30 10 'cartas.p' 1
+Nul 1 0x34 0 'cartas.p' 1
+Down 1 0x38 244 'cartas.p' 1
+Shift 1 0x3c 241 'cartas.p' 1
+Return 1 0x40 246 'cartas.p' 1
+MetaRight 1 0x44 248 'cartas.p' 1
+MetaLeft 1 0x48 247 'cartas.p' 1
+Tab 1 0x4c 9 'cartas.p' 1
+Left 1 0x50 243 'cartas.p' 1
+Ctrl 1 0x54 240 'cartas.p' 1
+Del 1 0x58 249 'cartas.p' 1
+Up 1 0x5c 245 'cartas.p' 1
+Right 1 0x60 242 'cartas.p' 1
+$s0 14 0x64 'valor: ' 'cartas.p' 38
+$s1 15 0x80 'palo: ' 'cartas.p' 40
+$s2 16 0x98 ' La carta vale: ' 'cartas.p' 51
+stdin 5 0xd8 - 'cartas.p' 1
+stdout 5 0xdc - 'cartas.p' 1
+stdgraph 5 0xe0 - 'cartas.p' 1
+procs 5
+0 nuevacarta 0x00000 2 1 8 8 8 'cartas.p' 42
+valor 11 0x4 - 'cartas.p' 14
+palo 12 0x0 - 'cartas.p' 15
+carta 13 0x0 - 'cartas.p' 16
+1 esfigura 0x00014 1 0 4 8 0 'cartas.p' 26
+carta 13 0x0 - 'cartas.p' 20
+2 valorcarta 0x00025 1 2 4 8 8 'cartas.p' 50
+carta 13 0x0 - 'cartas.p' 29
+pos 2 0x0 - 'cartas.p' 30
+valor 2 0x4 - 'cartas.p' 31
+3 leercarta 0x00055 1 2 0 8 8 'cartas.p' 49
+carta 13 0x0 - 'cartas.p' 42
+valor 11 0x0 - 'cartas.p' 42
+palo 12 0x4 - 'cartas.p' 42
+4 main 0x00093 0 2 0 0 12 'cartas.p' 45
+carta 13 0x0 - 'cartas.p' 50
+valor 3 0x8 - 'cartas.p' 52
+text 187
+# nuevacarta()
+# {...}
+# .(%carta: TipoCarta, valor: TipoValor) = $valor: TipoValor
+00000	arg	0x0000000004	# $valor: TipoValor;
+00002	lvar	0x0000000000	# .; %carta: TipoCarta;
+00004	stom	0x000000000b
+# .(%carta: TipoCarta, palo: TipoPalo) = $palo: TipoPalo
+00006	arg	0x0000000000	# $palo: TipoPalo;
+00008	lvar	0x0000000000	# .; %carta: TipoCarta;
+0000a	fld	0x0000000004
+0000c	stom	0x000000000c
+# return %carta: TipoCarta
+0000e	lvar	0x0000000000	# %carta: TipoCarta;
+00010	ind	0x0000000008
+00012	ret	0x0000000000
+# esfigura()
+# {...}
+# return and(>=(.($carta: TipoCarta, valor: TipoValor), Sota=Sota), <=(.($carta: TipoCarta, valor: TipoValor), Rey=Rey))
+00014	push	0x0000000009	# Rey=Rey;
+00016	arg	0x0000000000	# .; $carta: TipoCarta;
+00018	ind	0x0000000004
+0001a	le	
+0001b	push	0x0000000007	# Sota=Sota;
+0001d	arg	0x0000000000	# .; $carta: TipoCarta;
+0001f	ind	0x0000000004
+00021	ge	
+00022	and	
+00023	ret	0x0000000001
+# valorcarta()
+# {...}
+# if(esfigura($carta: TipoCarta))
+00025	arg	0x0000000000	# $carta: TipoCarta;
+00027	ind	0x0000000008
+00029	call	0x0000000001	# esfigura();
+0002b	jmpf	0x0000000033
+# {...}
+# return 0.500000
+0002d	pushr	5.000000e-01	# 0.500000;
+0002f	ret	0x0000000002
+00031	jmp	0x0000000053
+# else
+# %pos: int = cast(.($carta: TipoCarta, valor: TipoValor))
+00033	arg	0x0000000000	# .; $carta: TipoCarta;
+00035	ind	0x0000000004
+00037	cast	0x0000000002
+00039	lvar	0x0000000000	# %pos: int;
+0003b	sto	0x0000000002
+# %valor: int = +(-(%pos: int, 0), 1)
+0003d	push	0x0000000001	# 1;
+0003f	push	0x0000000000	# 0;
+00041	lvar	0x0000000000	# %pos: int;
+00043	ind	0x0000000004
+00045	sub	
+00046	add	
+00047	lvar	0x0000000004	# %valor: int;
+00049	sto	0x0000000002
+# return cast(%valor: int)
+0004b	lvar	0x0000000004	# %valor: int;
+0004d	ind	0x0000000004
+0004f	cast	0x0000000003
+00051	ret	0x0000000002
+# return <nil>
+00053	ret	0x0000000002
+# leercarta()
+# {...}
+# fwrite(stdout: file, $s0="valor: ")
+00055	daddr	0x0000000064	# $s0="valor: ";
+00057	ind	0x000000001c
+00059	daddr	0x00000000dc	# stdout: file;
+0005b	ind	0x0000000004
+0005d	push	0x000000000e
+0005f	call	0x008000000f	# fwrite();
+# fread(stdin: file, %valor: TipoValor)
+00061	lvar	0x0000000000	# %valor: TipoValor;
+00063	daddr	0x00000000d8	# stdin: file;
+00065	ind	0x0000000004
+00067	push	0x000000000b
+00069	call	0x008000000b	# fread();
+# fwrite(stdout: file, $s1="palo: ")
+0006b	daddr	0x0000000080	# $s1="palo: ";
+0006d	ind	0x0000000018
+0006f	daddr	0x00000000dc	# stdout: file;
+00071	ind	0x0000000004
+00073	push	0x000000000f
+00075	call	0x008000000f	# fwrite();
+# fread(stdin: file, %palo: TipoPalo)
+00077	lvar	0x0000000004	# %palo: TipoPalo;
+00079	daddr	0x00000000d8	# stdin: file;
+0007b	ind	0x0000000004
+0007d	push	0x000000000c
+0007f	call	0x008000000b	# fread();
+# &carta: TipoCarta = nuevacarta(%valor: TipoValor, %palo: TipoPalo)
+00081	lvar	0x0000000004	# %palo: TipoPalo;
+00083	ind	0x0000000004
+00085	lvar	0x0000000000	# %valor: TipoValor;
+00087	ind	0x0000000004
+00089	call	0x0000000000	# nuevacarta();
+0008b	arg	0x0000000000	# &carta: TipoCarta;
+0008d	ind	0x0000000008
+0008f	sto	0x000000000d
+# return <nil>
+00091	ret	0x0000000003
+# main()
+# {...}
+# leercarta(%carta: TipoCarta)
+00093	lvar	0x0000000000	# %carta: TipoCarta;
+00095	call	0x0000000003	# leercarta();
+# %valor: float = valorcarta(%carta: TipoCarta)
+00097	lvar	0x0000000000	# %carta: TipoCarta;
+00099	ind	0x0000000008
+0009b	call	0x0000000002	# valorcarta();
+0009d	lvar	0x0000000008	# %valor: float;
+0009f	sto	0x0000000003
+# fwrite(stdout: file, $s2=" La carta vale: ")
+000a1	daddr	0x0000000098	# $s2=" La carta vale: ";
+000a3	ind	0x0000000040
+000a5	daddr	0x00000000dc	# stdout: file;
+000a7	ind	0x0000000004
+000a9	push	0x0000000010
+000ab	call	0x008000000f	# fwrite();
+# fwriteln(stdout: file, %valor: float)
+000ad	lvar	0x0000000008	# %valor: float;
+000af	ind	0x0000000004
+000b1	daddr	0x00000000dc	# stdout: file;
+000b3	ind	0x0000000004
+000b5	push	0x0000000003
+000b7	call	0x0080000010	# fwriteln();
+# return <nil>
+000b9	ret	0x0000000004
+pcs 21
+00000	'cartas.p'	14
+00006	'cartas.p'	15
+0000e	'cartas.p'	16
+00014	'cartas.p'	20
+00025	'cartas.p'	26
+0002d	'cartas.p'	27
+00033	'cartas.p'	29
+0003d	'cartas.p'	30
+0004b	'cartas.p'	31
+00053	'cartas.p'	54
+00055	'cartas.p'	38
+00061	'cartas.p'	39
+0006b	'cartas.p'	40
+00077	'cartas.p'	41
+00081	'cartas.p'	42
+00091	'cartas.p'	54
+00093	'cartas.p'	49
+00097	'cartas.p'	50
+000a1	'cartas.p'	51
+000ad	'cartas.p'	52
+000b9	'cartas.p'	54

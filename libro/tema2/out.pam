@@ -1,0 +1,150 @@
+#!/bin/pam
+entry 1
+types 12
+0 bool b  0 1 2 4 0
+1 char c  0 255 256 4 0
+2 int i  -2147483646 2147483647 0 4 0
+3 float r  0 0 0 4 0
+4 $nil p  0 0 0 8 0
+5 file f  0 0 0 4 0
+6 strength h  0 255 0 4 0
+7 opacity l  0 1 0 4 0
+8 color e  0 6 7 4 0
+Black
+Red
+Green
+Blue
+Yellow
+Orange
+White
+9 button u  0 255 0 4 0
+10 sound e  0 19 20 4 0
+Woosh
+Beep
+Sheep
+Phaser
+Rocket
+CNote
+CsharpNote
+DNote
+DsharpNote
+ENote
+FNote
+FsharpNote
+GNote
+GsharpNote
+ANote
+AsharpNote
+BNote
+Bomb
+Fail
+Tada
+11 $tstr2 s  0 1 2 8 1
+vars 31
+Maxint 2 0x0 2147483647 'digitosseparados.p' 1
+Minint 2 0x4 -2147483646 'digitosseparados.p' 1
+Maxchar 1 0x8 255 'digitosseparados.p' 1
+Minchar 1 0xc 0 'digitosseparados.p' 1
+Minstrength 6 0x10 0 'digitosseparados.p' 1
+Maxstrength 6 0x14 255 'digitosseparados.p' 1
+Transp 7 0x18 0.000000e+00 'digitosseparados.p' 1
+Tlucid 7 0x1c 5.000000e-01 'digitosseparados.p' 1
+Opaque 7 0x20 1.000000e+00 'digitosseparados.p' 1
+NoBut 9 0x24 0 'digitosseparados.p' 1
+Ctrl 1 0x28 240 'digitosseparados.p' 1
+Del 1 0x2c 249 'digitosseparados.p' 1
+Eol 1 0x30 10 'digitosseparados.p' 1
+Eof 1 0x34 255 'digitosseparados.p' 1
+Nul 1 0x38 0 'digitosseparados.p' 1
+Down 1 0x3c 244 'digitosseparados.p' 1
+Return 1 0x40 246 'digitosseparados.p' 1
+MetaRight 1 0x44 248 'digitosseparados.p' 1
+Left 1 0x48 243 'digitosseparados.p' 1
+Right 1 0x4c 242 'digitosseparados.p' 1
+Shift 1 0x50 241 'digitosseparados.p' 1
+Tab 1 0x54 9 'digitosseparados.p' 1
+Esc 1 0x58 27 'digitosseparados.p' 1
+Up 1 0x5c 245 'digitosseparados.p' 1
+MetaLeft 1 0x60 247 'digitosseparados.p' 1
+numero 2 0x64 357 'digitosseparados.p' 17
+$s0 11 0x68 '  ' 'digitosseparados.p' 14
+$s1 11 0x70 '  ' 'digitosseparados.p' 16
+stdin 5 0x78 - 'digitosseparados.p' 1
+stdout 5 0x7c - 'digitosseparados.p' 1
+stdgraph 5 0x80 - 'digitosseparados.p' 1
+procs 2
+0 valordigito 0x00000 2 0 4 8 0 'digitosseparados.p' 17
+numero 2 0x4 - 'digitosseparados.p' 9
+posicion 2 0x0 - 'digitosseparados.p' 9
+1 main 0x00014 0 0 0 0 0 'digitosseparados.p' 11
+text 94
+# valordigito()
+# {...}
+# return %(/($numero: int, **(10, -($posicion: int, 1))), 10)
+00000	push	0x000000000a	# 10;
+00002	push	0x0000000001	# 1;
+00004	arg	0x0000000000	# $posicion: int;
+00006	ind	0x0000000004
+00008	sub	
+00009	push	0x000000000a	# 10;
+0000b	pow	
+0000c	arg	0x0000000004	# $numero: int;
+0000e	ind	0x0000000004
+00010	div	
+00011	mod	
+00012	ret	0x0000000000
+# main()
+# {...}
+# fwrite(stdout: file, valordigito(numero=357, 3))
+00014	push	0x0000000003	# 3;
+00016	push	0x0000000165	# numero=357;
+00018	call	0x0000000000	# valordigito();
+0001a	daddr	0x000000007c	# stdout: file;
+0001c	ind	0x0000000004
+0001e	push	0x0000000002
+00020	call	0x008000000f	# fwrite();
+# fwrite(stdout: file, $s0="  ")
+00022	daddr	0x0000000068	# $s0="  ";
+00024	ind	0x0000000008
+00026	daddr	0x000000007c	# stdout: file;
+00028	ind	0x0000000004
+0002a	push	0x000000000b
+0002c	call	0x008000000f	# fwrite();
+# fwrite(stdout: file, valordigito(numero=357, 2))
+0002e	push	0x0000000002	# 2;
+00030	push	0x0000000165	# numero=357;
+00032	call	0x0000000000	# valordigito();
+00034	daddr	0x000000007c	# stdout: file;
+00036	ind	0x0000000004
+00038	push	0x0000000002
+0003a	call	0x008000000f	# fwrite();
+# fwrite(stdout: file, $s1="  ")
+0003c	daddr	0x0000000070	# $s1="  ";
+0003e	ind	0x0000000008
+00040	daddr	0x000000007c	# stdout: file;
+00042	ind	0x0000000004
+00044	push	0x000000000b
+00046	call	0x008000000f	# fwrite();
+# fwrite(stdout: file, valordigito(numero=357, 1))
+00048	push	0x0000000001	# 1;
+0004a	push	0x0000000165	# numero=357;
+0004c	call	0x0000000000	# valordigito();
+0004e	daddr	0x000000007c	# stdout: file;
+00050	ind	0x0000000004
+00052	push	0x0000000002
+00054	call	0x008000000f	# fwrite();
+# fwriteeol(stdout: file)
+00056	daddr	0x000000007c	# stdout: file;
+00058	ind	0x0000000004
+0005a	call	0x0080000011	# fwriteeol();
+# return <nil>
+0005c	ret	0x0000000001
+pcs 8
+00000	'digitosseparados.p'	9
+00014	'digitosseparados.p'	13
+00022	'digitosseparados.p'	14
+0002e	'digitosseparados.p'	15
+0003c	'digitosseparados.p'	16
+00048	'digitosseparados.p'	17
+00056	'digitosseparados.p'	18
+0005c	'digitosseparados.p'	22

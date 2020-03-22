@@ -1,0 +1,153 @@
+#!/bin/pam
+entry 1
+types 12
+0 bool b  0 1 2 4 0
+1 char c  0 255 256 4 0
+2 int i  -2147483646 2147483647 0 4 0
+3 float r  0 0 0 4 0
+4 $nil p  0 0 0 8 0
+5 file f  0 0 0 4 0
+6 strength h  0 255 0 4 0
+7 opacity l  0 1 0 4 0
+8 color e  0 6 7 4 0
+Black
+Red
+Green
+Blue
+Yellow
+Orange
+White
+9 button u  0 255 0 4 0
+10 sound e  0 19 20 4 0
+Woosh
+Beep
+Sheep
+Phaser
+Rocket
+CNote
+CsharpNote
+DNote
+DsharpNote
+ENote
+FNote
+FsharpNote
+GNote
+GsharpNote
+ANote
+AsharpNote
+BNote
+Bomb
+Fail
+Tada
+11 $tstr8 s  0 7 8 32 1
+vars 30
+Maxint 2 0x0 2147483647 'cuadrados.p' 1
+Minint 2 0x4 -2147483646 'cuadrados.p' 1
+Maxchar 1 0x8 255 'cuadrados.p' 1
+Minchar 1 0xc 0 'cuadrados.p' 1
+Minstrength 6 0x10 0 'cuadrados.p' 1
+Maxstrength 6 0x14 255 'cuadrados.p' 1
+Transp 7 0x18 0.000000e+00 'cuadrados.p' 1
+Tlucid 7 0x1c 5.000000e-01 'cuadrados.p' 1
+Opaque 7 0x20 1.000000e+00 'cuadrados.p' 1
+NoBut 9 0x24 0 'cuadrados.p' 1
+Esc 1 0x28 27 'cuadrados.p' 1
+Del 1 0x2c 249 'cuadrados.p' 1
+MetaRight 1 0x30 248 'cuadrados.p' 1
+Eof 1 0x34 255 'cuadrados.p' 1
+Nul 1 0x38 0 'cuadrados.p' 1
+Up 1 0x3c 245 'cuadrados.p' 1
+Down 1 0x40 244 'cuadrados.p' 1
+Right 1 0x44 242 'cuadrados.p' 1
+Eol 1 0x48 10 'cuadrados.p' 1
+Tab 1 0x4c 9 'cuadrados.p' 1
+Left 1 0x50 243 'cuadrados.p' 1
+Ctrl 1 0x54 240 'cuadrados.p' 1
+Return 1 0x58 246 'cuadrados.p' 1
+Shift 1 0x5c 241 'cuadrados.p' 1
+MetaLeft 1 0x60 247 'cuadrados.p' 1
+MaxNum 2 0x64 5 'cuadrados.p' 14
+$s0 11 0x68 ' ** 2 = ' 'cuadrados.p' 17
+stdin 5 0x88 - 'cuadrados.p' 1
+stdout 5 0x8c - 'cuadrados.p' 1
+stdgraph 5 0x90 - 'cuadrados.p' 1
+procs 2
+0 cuadrado 0x00000 1 0 4 4 0 'cuadrados.p' 15
+n 2 0x0 - 'cuadrados.p' 8
+1 main 0x00009 0 2 0 0 8 'cuadrados.p' 10
+x 2 0x0 - 'cuadrados.p' 18
+i 2 0x4 - 'cuadrados.p' 16
+text 93
+# cuadrado()
+# {...}
+# return **($n: int, 2)
+00000	push	0x0000000002	# 2;
+00002	arg	0x0000000000	# $n: int;
+00004	ind	0x0000000004
+00006	pow	
+00007	ret	0x0000000000
+# main()
+# {...}
+# {...}
+# %i: int = 1
+00009	push	0x0000000001	# 1;
+0000b	lvar	0x0000000004	# %i: int;
+0000d	sto	0x0000000002
+# for(<=(%i: int, MaxNum=5))
+0000f	push	0x0000000005	# MaxNum=5;
+00011	lvar	0x0000000004	# %i: int;
+00013	ind	0x0000000004
+00015	le	
+00016	jmpf	0x000000005b
+# {...}
+# %x: int = cuadrado(%i: int)
+00018	lvar	0x0000000004	# %i: int;
+0001a	ind	0x0000000004
+0001c	call	0x0000000000	# cuadrado();
+0001e	lvar	0x0000000000	# %x: int;
+00020	sto	0x0000000002
+# fwrite(stdout: file, %i: int)
+00022	lvar	0x0000000004	# %i: int;
+00024	ind	0x0000000004
+00026	daddr	0x000000008c	# stdout: file;
+00028	ind	0x0000000004
+0002a	push	0x0000000002
+0002c	call	0x008000000f	# fwrite();
+# fwrite(stdout: file, $s0=" ** 2 = ")
+0002e	daddr	0x0000000068	# $s0=" ** 2 = ";
+00030	ind	0x0000000020
+00032	daddr	0x000000008c	# stdout: file;
+00034	ind	0x0000000004
+00036	push	0x000000000b
+00038	call	0x008000000f	# fwrite();
+# fwriteln(stdout: file, %x: int)
+0003a	lvar	0x0000000000	# %x: int;
+0003c	ind	0x0000000004
+0003e	daddr	0x000000008c	# stdout: file;
+00040	ind	0x0000000004
+00042	push	0x0000000002
+00044	call	0x0080000010	# fwriteln();
+00046	push	0x0000000005	# MaxNum=5;
+00048	lvar	0x0000000004	# %i: int;
+0004a	ind	0x0000000004
+0004c	eq	
+0004d	jmpt	0x000000005b
+# %i: int = succ(%i: int)
+0004f	lvar	0x0000000004	# %i: int;
+00051	ind	0x0000000004
+00053	call	0x0080000031	# succ();
+00055	lvar	0x0000000004	# %i: int;
+00057	sto	0x0000000002
+00059	jmp	0x000000000f
+# return <nil>
+0005b	ret	0x0000000001
+pcs 9
+00000	'cuadrados.p'	8
+00009	'cuadrados.p'	16
+00009	'cuadrados.p'	19
+00018	'cuadrados.p'	15
+00022	'cuadrados.p'	16
+0002e	'cuadrados.p'	17
+0003a	'cuadrados.p'	18
+0004f	'cuadrados.p'	19
+0005b	'cuadrados.p'	20

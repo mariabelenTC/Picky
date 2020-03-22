@@ -1,0 +1,85 @@
+
+program tablero;
+consts:
+    Letramin = 'A';
+    Nummin = 1;
+    
+types:  
+    TipoTablero= record
+    {
+        anchotablero: int;
+        anchocasilla: int;
+        
+    };
+    TipoCasilla= record
+        {
+        negro: char;
+        blanco: char;       
+    };
+
+procedure leerdimensionestablero( ref dimensiones: TipoTablero, ref casilla: TipoCasilla)              
+{
+    readln(dimensiones.anchotablero);
+    readln(dimensiones.anchocasilla);
+    readln(casilla.blanco);
+    readln(casilla.negro);
+}
+function escasillapar(fila:int): bool
+{
+        return fila % 2 == 0;
+}
+
+procedure ponernegrasyblancas(dimensiones: TipoTablero,casilla: TipoCasilla)
+        dim1: int;      
+        dim2: int;
+        k: int;
+        j: int;
+        colr: char;
+
+{
+
+/*inicializar las variables de color*/
+
+    for(dim1=1, dim1<=dimensiones.anchotablero){ 
+       
+        if (escasillapar(dim1)){
+            colr = casilla.blanco;
+        }else{
+            colr = casilla.negro;
+        } 
+
+/* este for hace que cada casilla, sea una matriz cuadrada*/
+       for(j=1, j<=dimensiones.anchocasilla){
+
+            /* este for hace que se escriba el ancho del tablero, sin intecalar blancas y negras*/ 
+
+            for(dim2=1, dim2<=dimensiones.anchotablero){ 
+            
+                 
+            /*este for escribe una columna de blancos y negros */ 
+
+                for(k=1, k<=dimensiones.anchocasilla){
+                    write(colr);                     
+                }
+               
+            /*este if-else hace que blancas y negras se intercalen,*/   
+
+                if (colr==casilla.negro){
+                    colr=casilla.blanco;
+                }else{
+                    colr=casilla.negro;         
+                     } 
+            }
+            writeeol();
+        }  
+    }
+    writeeol();                      
+}
+
+procedure main()
+    dimensiones:TipoTablero;
+    casillas: TipoCasilla;
+{
+    leerdimensionestablero(dimensiones,casillas);
+    ponernegrasyblancas(dimensiones,casillas);
+}

@@ -1,0 +1,33 @@
+program tablero;
+consts:
+    Letramin = 'A';
+    Nummin = 1;
+	
+types:	
+	TipoTablero= record
+	{
+		anchotablero: int;
+		anchocasilla: int;
+		
+    };
+    TipoCasilla= record
+        {
+		negro: char;
+		blanco: char;		
+	};	
+	procedure leerdimensionestablero( ref dimensiones: TipoTablero, ref casilla: TipoCasilla)              
+{
+	readln(dimensiones.anchotablero);
+	readln(dimensiones.anchocasilla);
+	readln(casilla.blanco);
+	readln(casilla.negro);
+}
+procedure 
+procedure main()
+	dimensiones:TipoTablero;
+	casillas: TipoCasilla;
+	
+{
+	leerdimensionestablero(dimensiones,casillas);
+}
+

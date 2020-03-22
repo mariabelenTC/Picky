@@ -1,0 +1,124 @@
+#!/bin/pam
+entry 1
+types 13
+0 bool b  0 1 2 4 0
+1 char c  0 255 256 4 0
+2 int i  -2147483646 2147483647 0 4 0
+3 float r  0 0 0 4 0
+4 $nil p  0 0 0 8 0
+5 file f  0 0 0 4 0
+6 strength h  0 255 0 4 0
+7 opacity l  0 1 0 4 0
+8 color e  0 6 7 4 0
+Black
+Red
+Green
+Blue
+Yellow
+Orange
+White
+9 button u  0 255 0 4 0
+10 sound e  0 19 20 4 0
+Woosh
+Beep
+Sheep
+Phaser
+Rocket
+CNote
+CsharpNote
+DNote
+DsharpNote
+ENote
+FNote
+FsharpNote
+GNote
+GsharpNote
+ANote
+AsharpNote
+BNote
+Bomb
+Fail
+Tada
+11 $tstr5 s  0 4 5 20 1
+12 $tstr1 s  0 0 1 4 1
+vars 31
+Maxint 2 0x0 2147483647 'holapi.p' 1
+Minint 2 0x4 -2147483646 'holapi.p' 1
+Maxchar 1 0x8 255 'holapi.p' 1
+Minchar 1 0xc 0 'holapi.p' 1
+Minstrength 6 0x10 0 'holapi.p' 1
+Maxstrength 6 0x14 255 'holapi.p' 1
+Transp 7 0x18 0.000000e+00 'holapi.p' 1
+Tlucid 7 0x1c 5.000000e-01 'holapi.p' 1
+Opaque 7 0x20 1.000000e+00 'holapi.p' 1
+NoBut 9 0x24 0 'holapi.p' 1
+Eol 1 0x28 10 'holapi.p' 1
+Right 1 0x2c 242 'holapi.p' 1
+Ctrl 1 0x30 240 'holapi.p' 1
+MetaRight 1 0x34 248 'holapi.p' 1
+MetaLeft 1 0x38 247 'holapi.p' 1
+Down 1 0x3c 244 'holapi.p' 1
+Esc 1 0x40 27 'holapi.p' 1
+Up 1 0x44 245 'holapi.p' 1
+Shift 1 0x48 241 'holapi.p' 1
+Return 1 0x4c 246 'holapi.p' 1
+Eof 1 0x50 255 'holapi.p' 1
+Nul 1 0x54 0 'holapi.p' 1
+Left 1 0x58 243 'holapi.p' 1
+Del 1 0x5c 249 'holapi.p' 1
+Tab 1 0x60 9 'holapi.p' 1
+Pi 3 0x64 3.141593e+00 'holapi.p' 16
+$s0 11 0x68 'Hola ' 'holapi.p' 8
+$s1 12 0x7c '!' 'holapi.p' 10
+stdin 5 0x80 - 'holapi.p' 1
+stdout 5 0x84 - 'holapi.p' 1
+stdgraph 5 0x88 - 'holapi.p' 1
+procs 2
+0 escribirsaludo 0x00000 1 0 0 4 0 'holapi.p' 16
+quien 3 0x0 - 'holapi.p' 9
+1 main 0x0002c 0 0 0 0 0 'holapi.p' 14
+text 50
+# escribirsaludo()
+# {...}
+# fwrite(stdout: file, $s0="Hola ")
+00000	daddr	0x0000000068	# $s0="Hola ";
+00002	ind	0x0000000014
+00004	daddr	0x0000000084	# stdout: file;
+00006	ind	0x0000000004
+00008	push	0x000000000b
+0000a	call	0x008000000f	# fwrite();
+# fwrite(stdout: file, $quien: float)
+0000c	arg	0x0000000000	# $quien: float;
+0000e	ind	0x0000000004
+00010	daddr	0x0000000084	# stdout: file;
+00012	ind	0x0000000004
+00014	push	0x0000000003
+00016	call	0x008000000f	# fwrite();
+# fwrite(stdout: file, $s1="!")
+00018	daddr	0x000000007c	# $s1="!";
+0001a	ind	0x0000000004
+0001c	daddr	0x0000000084	# stdout: file;
+0001e	ind	0x0000000004
+00020	push	0x000000000c
+00022	call	0x008000000f	# fwrite();
+# fwriteeol(stdout: file)
+00024	daddr	0x0000000084	# stdout: file;
+00026	ind	0x0000000004
+00028	call	0x0080000011	# fwriteeol();
+# return <nil>
+0002a	ret	0x0000000000
+# main()
+# {...}
+# escribirsaludo(Pi=3.141593)
+0002c	pushr	3.141593e+00	# Pi=3.141593;
+0002e	call	0x0000000000	# escribirsaludo();
+# return <nil>
+00030	ret	0x0000000001
+pcs 7
+00000	'holapi.p'	8
+0000c	'holapi.p'	9
+00018	'holapi.p'	10
+00024	'holapi.p'	11
+0002a	'holapi.p'	18
+0002c	'holapi.p'	16
+00030	'holapi.p'	18

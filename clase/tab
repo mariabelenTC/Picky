@@ -1,0 +1,104 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+       
+        
+        
+                     } 
+                    colr=casilla.blanco;
+                    colr=casilla.negro;         
+                    write(colr);                                
+                for(k=1, k<=dimensiones.anchocasilla){     /* escribe una columna de banco y negro*/
+                if (colr==casilla.negro){           /*este if-else hace que blancas y negras se intercalen,*/  
+                write(" ");
+                write(letra);
+                }
+                }
+                }else{
+            colr = casilla.blanco;
+            colr = casilla.negro;
+            for(dim2=1, dim2<=dimensiones.anchotablero){  /* este for hace que se escriba el ancho del tablero*/ 
+            if(anchotablero==dimensiones.anchocasilla/2){
+            writeeol();
+            }
+            }else{
+        anchocasilla: int;
+        anchotablero: int;
+        anchotablero: int;
+        blanco: char;       
+        colr: char;
+        dim1: int;      
+        dim2: int;
+        espacio:int;
+        for(anchotablero=0, anchotablero<dimensiones.anchocasilla){
+        if (escasillapar(dim1)){
+        j: int;
+        k: int;
+        letra: char;
+        negro: char;
+        numero: int;
+        return fila % 2 == 0;
+        {
+        }
+        } 
+        }  
+        }else{
+       for(j=1, j<=dimensiones.anchocasilla){       /* con este for las casillas son  matriz cuadrada*/
+    casillas: TipoCasilla;
+    dimensiones:TipoTablero;
+    escribirletrascabecera(dimensiones);
+    for(dim1=1, dim1<=dimensiones.anchotablero){ 
+    for(numero=0, numero<dimensiones.anchotablero){
+    leerdimensionestablero(dimensiones,casillas);
+    letra = Letramin;   
+    letra= succ(letra);
+    Letramin = 'A';
+    Nummin = 1;
+    ponernegrasyblancas(dimensiones,casillas);
+    readln(casilla.blanco);
+    readln(casilla.negro);
+    readln(dimensiones.anchocasilla);
+    readln(dimensiones.anchotablero);
+    TipoCasilla= record
+    TipoTablero= record
+    writeeol();
+    writeeol();                      
+    {
+    }
+    }
+    };
+    };  
+/*inicializar las variables de color*/
+consts:
+function escasillapar(fila:int): bool
+procedure escribirletrascabecera(dimensiones: TipoTablero)
+procedure leerdimensionestablero( ref dimensiones: TipoTablero, ref casilla: TipoCasilla)              
+procedure main()
+procedure ponernegrasyblancas(dimensiones: TipoTablero,casilla: TipoCasilla)
+program tablero;
+types:  
+{
+{
+{
+{
+{
+}
+}
+}
+}
+}
